@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>BBDBuy spreadsheet: sneakers, kleding en een heldere koopgids</title>
+  <meta name="description" content="Gebruik een BBDBuy spreadsheet voor gerichter productonderzoek. Vergelijk sneakers, kleding, maten en QC-foto’s en ontdek categorieën op HipobuyFind.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#172c3e">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:title" content="BBDBuy spreadsheet — eerst kijken, dan vergelijken">
+  <meta property="og:description" content="Een onafhankelijke Nederlandstalige gids voor productlinks, pasvorm, QC-foto’s en een overzichtelijke shortlist.">
+  <meta property="og:image" content="https://db.repsheet.net/storage/v1/object/public/img/shadow/shoes-3041-v1.webp">
+  <meta property="og:image:alt" content="Productafbeelding van Nike Air Force 1 sneakers">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://db.repsheet.net" crossorigin>
+  <link rel="preconnect" href="https://si.geilicdn.com" crossorigin>
+
+  <!--
+  Bestandsnaam: index.html.
+  Voeg na plaatsing een zelfverwijzende canonical toe met de werkelijke pagina-URL.
+
+  Onderzoeksnotitie: Google kon niet rechtstreeks worden uitgelezen. De onderstaande
+  tien verschillende websites zijn via een alternatieve zoekindex onderzocht;
+  dit is geen bevestigde Google-top-10. Titels en inhoudelijke thema’s zijn
+  gebruikt voor de onderwerpkeuze, niet voor overgenomen verkoopclaims,
+  prijzen of beschikbaarheid.
+
+  bbdbuy-sheet.com/spreadsheet — visueel zoeken, productidentiteit en varianten.
+  bbdbuyspreadsheet.com — categorieën en productontdekking.
+  repsheet.net/spreadsheet/bbdbuy — productlinks en QC-referenties.
+  bbdbuy.net — selecteren, controleren en kosten vergelijken.
+  qcradar.com/bbdbuy-spreadsheet — QC-onderzoek; alleen zoekfragment beschikbaar, pagina gaf 403.
+  bbdbuy.app — onderzoeksnotities, maten en verouderde links.
+  one-to-oneyupoo.com/spreadsheets/bbdbuy — onderscheid tussen catalogus en aankoopdienst.
+  bbdbuy.org — kleding, schoenen en accessoires per categorie.
+  bbdbuy.spreadsheet.tv — kostenonderdelen en het bestelproces.
+  rep.tools/guides/bddbuy-spreadsheet — hergebruikte lijsten en broncontrole.
+
+  Bronverwijzingen bij deze onderzoeksnotitie: :chatgpt-content-reference{index="0"}
+  -->
+
+  <style>
+    :root {
+      --paper: #f5f1e8;
+      --white: #fffdf8;
+      --ink: #172c3e;
+      --muted: #52606a;
+      --line: #d8d4c9;
+      --accent: #a53b27;
+      --sand: #e8e0d1;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 4px;
+    }
+
+    a:hover { color: var(--accent); }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    h1, h2, h3, p, figure { margin: 0; }
+
+    h1, h2, h3 {
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6.4vw, 5.9rem);
+      letter-spacing: -.065em;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.3vw, 3rem);
+      letter-spacing: -.04em;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      letter-spacing: -.02em;
+    }
+
+    p + p { margin-top: 1rem; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .muted { color: var(--muted); }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 23px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: -.04em;
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    .edition {
+      font-size: .75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .categories { padding-block: 23px 28px; }
+
+    .category-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .category-heading p {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .category-grid a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 57px;
+      padding: 12px 14px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      font-size: .83rem;
+      font-weight: 650;
+      background: var(--white);
+    }
+
+    .category-grid a::after {
+      content: "↗";
+      color: var(--accent);
+    }
+
+    .category-grid a:hover { background: var(--sand); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 1fr;
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-copy {
+      padding: 36px 40px 38px 0;
+      align-self: center;
+    }
+
+    .hero-copy .eyebrow {
+      color: var(--accent);
+      margin-bottom: 21px;
+    }
+
+    .hero-copy h1 span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .intro {
+      font-size: 1.03rem;
+      max-width: 49ch;
+      margin-top: 24px;
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      background: var(--ink);
+      color: #fffdf8;
+      padding: 14px 21px;
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 750;
+      margin-top: 25px;
+    }
+
+    .button:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .hero-art {
+      position: relative;
+      background: var(--sand);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px;
+      min-width: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .hero-art img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .hero-art figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 15px;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    .hero-art figcaption strong { color: var(--ink); }
+
+    .answer {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .answer .eyebrow {
+      color: var(--accent);
+      padding-top: 4px;
+    }
+
+    .answer p { max-width: 83ch; }
+
+    .section {
+      padding-block: 60px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 28px;
+    }
+
+    .section-head .eyebrow {
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section-head > p {
+      max-width: 37ch;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .gallery figure {
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: white;
+    }
+
+    .gallery figcaption { padding: 18px; }
+
+    .gallery h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .gallery p {
+      font-size: .83rem;
+      color: var(--muted);
+    }
+
+    .gallery a {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: .8rem;
+      font-weight: 750;
+    }
+
+    .photo-note {
+      margin-top: 17px;
+      max-width: 90ch;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 55px;
+    }
+
+    .guide-intro h2 { margin: 12px 0 20px; }
+
+    .guide-intro p {
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .steps {
+      counter-reset: checks;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .steps li {
+      position: relative;
+      padding: 0 0 25px 51px;
+      counter-increment: checks;
+    }
+
+    .steps li + li {
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .steps li::before {
+      content: "0" counter(checks);
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: .85rem;
+    }
+
+    .steps li + li::before { top: 24px; }
+
+    .steps h3 { margin-bottom: 10px; }
+
+    .steps p {
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .table-box {
+      margin-top: 28px;
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: .87rem;
+    }
+
+    caption {
+      text-align: left;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--ink);
+      color: white;
+    }
+
+    td { background: var(--white); }
+
+    .journal {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 34px;
+    }
+
+    .journal article {
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .journal .eyebrow {
+      font-size: .65rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .journal h3 {
+      font-size: 1.55rem;
+      margin-bottom: 17px;
+    }
+
+    .journal p {
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .journal strong {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 55px;
+    }
+
+    .faq-layout h2 { margin-top: 12px; }
+
+    .faq-list { border-top: 1px solid var(--line); }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 20px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 750;
+      line-height: 1.5;
+      padding-right: 15px;
+    }
+
+    details p {
+      padding-top: 13px;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .closing {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      padding: 36px;
+      background: var(--ink);
+      color: var(--white);
+      margin-block: 40px;
+    }
+
+    .closing h2 { font-size: 1.7rem; }
+
+    .closing p {
+      font-size: .9rem;
+      color: #e0e5e8;
+      margin-top: 9px;
+      max-width: 60ch;
+    }
+
+    .closing .button {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .closing .button:hover { background: var(--sand); }
+
+    footer {
+      padding-block: 10px 35px;
+      font-size: .77rem;
+      color: var(--muted);
+    }
+
+    footer p { max-width: 105ch; }
+
+    footer .footline {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 14px;
+    }
+
+    footer a { font-weight: 700; }
+
+    .topic-line {
+      font-size: .81rem;
+      color: var(--muted);
+      margin-top: 22px;
+      max-width: 90ch;
+    }
+
+    @media (min-width: 900px) {
+      .section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 600px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .category-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .hero-copy { padding-right: 25px; }
+      .hero-art { padding: 20px; }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .guide, .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .guide-intro p { max-width: 68ch; }
+      .section-head { align-items: start; }
+
+      .answer {
+        grid-template-columns: 130px 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrap { width: calc(100% - 28px); }
+      .masthead { padding-block: 18px; }
+      .edition { font-size: .65rem; }
+      .category-heading { align-items: start; }
+
+      .category-heading p {
+        max-width: 22ch;
+        text-align: right;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .category-grid a {
+        font-size: .77rem;
+        padding: 11px;
+        min-height: 52px;
+      }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { padding: 28px 0; }
+
+      .hero-art {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding: 20px;
+      }
+
+      .hero-art img { max-height: 330px; }
+      .intro { font-size: .95rem; }
+
+      .answer {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        font-size: .93rem;
+      }
+
+      .section { padding-block: 40px; }
+      .section-head { display: block; }
+
+      .section-head > p {
+        margin-top: 15px;
+        max-width: 50ch;
+      }
+
+      .gallery { gap: 12px; }
+      .gallery figcaption { padding: 13px; }
+      .gallery h3 { font-size: .93rem; }
+      .journal { grid-template-columns: 1fr; }
+      .journal h3 { font-size: 1.4rem; }
+
+      .closing {
+        display: block;
+        padding: 25px;
+      }
+
+      .closing .button { margin-top: 22px; }
+
+      th, td {
+        padding: 11px;
+        min-width: 135px;
+      }
+
+      footer .footline {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+    }
+
+    @media print {
+      body { background: white; }
+      .button { display: none; }
+      .section { content-visibility: visible; }
+      .hero-art { max-width: 350px; }
+      .wrap { width: 100%; }
+      details p { display: block; }
+
+      .closing {
+        background: white;
+        color: black;
+      }
+
+      .closing p { color: black; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "#pagina",
+        "name": "BBDBuy spreadsheet: sneakers, kleding en een heldere koopgids",
+        "description": "Een onafhankelijke Nederlandstalige gids voor productlinks, pasvorm, QC-foto’s en een overzichtelijke shortlist.",
+        "inLanguage": "nl",
+        "about": {
+          "@type": "Thing",
+          "name": "Productonderzoek met een BBDBuy spreadsheet"
+        },
+        "hasPart": [
+          {"@id": "#maten"},
+          {"@id": "#fotos"},
+          {"@id": "#links"},
+          {"@id": "#kosten"},
+          {"@id": "#vragen"}
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "#maten",
+        "headline": "Maten lezen zonder op het label te gokken",
+        "description": "Vergelijk voetlengte, kledingmaten en de meetwijze van een specifieke productvermelding.",
+        "inLanguage": "nl",
+        "isPartOf": {"@id": "#pagina"}
+      },
+      {
+        "@type": "Article",
+        "@id": "#fotos",
+        "headline": "Wat vertelt een productfoto werkelijk?",
+        "description": "Controleer zichtbare details en houd productbeelden, QC-foto’s en materiaalgegevens uit elkaar.",
+        "inLanguage": "nl",
+        "isPartOf": {"@id": "#pagina"}
+      },
+      {
+        "@type": "Article",
+        "@id": "#links",
+        "headline": "Een goede shortlist bewaart ook de bron",
+        "description": "Leg de bronlink, verkoper, variant en controledatum vast voor een bruikbare productvergelijking.",
+        "inLanguage": "nl",
+        "isPartOf": {"@id": "#pagina"}
+      },
+      {
+        "@type": "Article",
+        "@id": "#kosten",
+        "headline": "Van artikelbedrag naar een bruikbare begroting",
+        "description": "Vergelijk dezelfde winkelmand en maak onbekende kosten zichtbaar voordat je een keuze maakt.",
+        "inLanguage": "nl",
+        "isPartOf": {"@id": "#pagina"}
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "#vragen",
+        "inLanguage": "nl",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wat is een BBDBuy spreadsheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een BBDBuy spreadsheet is een verzameling productverwijzingen die wordt gebruikt om artikelen te vinden en te vergelijken. Controleer per vermelding de bron, variant, maten en actuele voorwaarden; de naam van de lijst is geen kwaliteitsbewijs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Moet ik een spreadsheet downloaden?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nee. Deze gids en de categorieën op HipobuyFind zijn in de browser te bekijken. Een eigen Excel- of Google Sheets-bestand is alleen handig als je zelf links en vergelijkingsnotities wilt bewaren."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Waar komen de knoppen op deze pagina uit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Categorieknoppen openen de bijbehorende categorie op HipobuyFind. Alle overige navigatielinks openen de homepage van HipobuyFind. Deze pagina bevat geen BBDBuy-betaalproces."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bewijzen QC-foto’s dat een artikel authentiek is?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nee. QC-foto’s kunnen zichtbare afwijkingen en meetpunten helpen beoordelen, maar bewijzen op zichzelf geen authenticiteit, materiaalsamenstelling of duurzaamheid. Vraag aanvullende documentatie wanneer dat voor je keuze van belang is."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe vergelijk ik de maat van twee producten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gebruik de maattabel van iedere afzonderlijke vermelding en vergelijk dezelfde meetpunten. Meet bij kleding een passend eigen kledingstuk. Controleer bij schoenen het gebruikte maatsysteem en of een lengte de voet of de binnenzool betreft."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is deze gids officieel verbonden met BBDBuy of de merken?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nee. Dit is een onafhankelijke informatiepagina. Merknamen en afbeeldingen dienen voor herkenning en productonderzoek en betekenen geen samenwerking, goedkeuring of garantie van echtheid."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/horrl/">
+</head>
+
+<body>
+  <header class="wrap masthead">
+    <a class="wordmark" href="https://www.hipobuyfind.com" aria-label="Open de homepage van HipobuyFind">
+      VIND<span>WERK.</span>
+    </a>
+    <p class="edition">
+      Een gids voor bewuste keuzes<br>
+      Nederlands · onafhankelijk
+    </p>
+  </header>
+
+  <main class="wrap">
+    <nav class="categories" aria-label="Productcategorieën op HipobuyFind">
+      <div class="category-heading">
+        <h2 class="eyebrow">Begin bij je categorie</h2>
+        <p>Open de collectie op HipobuyFind ↗</p>
+      </div>
+
+      <div class="category-grid">
+        <a href="https://hipobuyfind.com/category-911-Shoes.html" aria-label="Schoenen bekijken op HipobuyFind">Schoenen</a>
+        <a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html" aria-label="Hoodies en truien bekijken op HipobuyFind">Hoodies / truien</a>
+        <a href="https://hipobuyfind.com/category-913-T-Shirts.html">T-shirts</a>
+        <a href="https://hipobuyfind.com/category-914-Jackets.html">Jassen</a>
+        <a href="https://hipobuyfind.com/category-915-Pants%2FShorts.html">Broeken / shorts</a>
+        <a href="https://hipobuyfind.com/category-916-Headwear.html">Petten / mutsen</a>
+        <a href="https://hipobuyfind.com/category-917-Sets.html">Kledingsets</a>
+        <a href="https://hipobuyfind.com/category-918-underwear%2Funderpants.html">Ondergoed</a>
+        <a href="https://hipobuyfind.com/category-919-Jersey.html">Sportshirts</a>
+        <a href="https://hipobuyfind.com/category-920-Accessories.html">Accessoires</a>
+      </div>
+    </nav>
+
+    <section class="hero" aria-labelledby="titel">
+      <div class="hero-copy">
+        <p class="eyebrow">De garderobe begint met een goede vraag</p>
+
+        <h1 id="titel">
+          BBDBuy spreadsheet
+          <span>Eerst kijken.<br>Dan vergelijken.</span>
+        </h1>
+
+        <p class="intro">
+          Een mooie foto trekt je aandacht. Een duidelijke maat, een herkenbare
+          bron en de juiste variant helpen je verder. Gebruik deze gids om
+          sneakers, kleding en accessoires met meer overzicht te onderzoeken.
+        </p>
+
+        <a class="button" href="https://www.hipobuyfind.com">
+          Ontdek HipobuyFind <span aria-hidden="true">↗</span>
+        </a>
+
+        <p class="topic-line">
+          Vier aandachtspunten: BBDBuy finds, de BBDBuy maattabel,
+          BBDBuy QC-foto’s en een praktische BBDBuy koopgids.
+        </p>
+      </div>
+
+      <figure class="hero-art">
+        <img
+          src="https://db.repsheet.net/storage/v1/object/public/img/shadow/shoes-3041-v1.webp"
+          width="800"
+          height="800"
+          alt="Productafbeelding van Nike Air Force 1 sneakers"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async">
+        <figcaption>
+          <strong>01 / Sneakers als vertrekpunt</strong>
+          <span>Beeld ter herkenning</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <aside class="answer" aria-label="Korte uitleg">
+      <p class="eyebrow">Het korte antwoord</p>
+      <p>
+        Een <strong>BBDBuy spreadsheet</strong> helpt je productverwijzingen
+        ordenen. Behandel iedere vermelding als een startpunt voor onderzoek:
+        vergelijk de bron, de maat en de gekozen uitvoering. Op deze pagina
+        vind je uitleg; de collectieknoppen brengen je naar
+        <strong>HipobuyFind</strong>.
+      </p>
+    </aside>
+
+    <section class="section" aria-labelledby="beeldtitel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Kijken met een doel</p>
+          <h2 id="beeldtitel">Het detail maakt het verschil.</h2>
+        </div>
+        <p>
+          Van sportieve lagen tot kleine accessoires:
+          kies eerst wat je wilt controleren.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <figure>
+          <img
+            src="https://si.geilicdn.com/open1862809525-1234478995-07a000000193d01b44ca0aa0834c_800_800.jpg"
+            width="800"
+            height="800"
+            alt="Catalogusbeeld van een Nike Sportswear Tech Fleece jas met capuchon"
+            loading="lazy"
+            decoding="async">
+          <figcaption>
+            <h3>Nike · sportieve lagen</h3>
+            <p>
+              Vergelijk de schouderbreedte van een hoodie en de
+              mouwlengte van een jas voordat je een maat kiest.
+            </p>
+            <a href="https://www.hipobuyfind.com">Kleding verkennen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://si.geilicdn.com/open1623462477-1234478995-7a8100000194c2482f090a8115b5_1200_1200.jpg"
+            width="1200"
+            height="1200"
+            alt="Catalogusbeeld van een Gucci GG Supreme baseballpet met gestreept detail"
+            loading="lazy"
+            decoding="async">
+          <figcaption>
+            <h3>Gucci · vorm en pasvorm</h3>
+            <p>
+              Controleer bij een pet de hoofdomtrek, de sluiting
+              en of de maat verstelbaar is.
+            </p>
+            <a href="https://www.hipobuyfind.com">Hoofddeksels verkennen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://si.geilicdn.com/open1648936853-1234478995-7f0b000001975f2be0b80a231226-unadjust_571_581.png"
+            width="571"
+            height="581"
+            alt="Catalogusbeeld van een Louis Vuitton Monogram Multicolore schoudertas"
+            loading="lazy"
+            decoding="async">
+          <figcaption>
+            <h3>Louis Vuitton · verhoudingen</h3>
+            <p>
+              Een tas op een vrijstaande foto vertelt weinig over
+              het formaat. Vraag naar afmetingen en draaglengte.
+            </p>
+            <a href="https://www.hipobuyfind.com">Meer details ontdekken ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://si.geilicdn.com/open1858585309-1234478995-6e3700000197af9c1ee90a22d249_1080_1080.jpg"
+            width="1080"
+            height="1080"
+            alt="Catalogusbeeld van een Dior armband met parel- en logobedels"
+            loading="lazy"
+            decoding="async">
+          <figcaption>
+            <h3>Dior · kleine afwerkingen</h3>
+            <p>
+              Vergelijk de lengte van een armband, het type
+              sluiting en de opgegeven materiaalgegevens.
+            </p>
+            <a href="https://www.hipobuyfind.com">Accessoires verkennen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://si.geilicdn.com/open1623462477-1234478995-449400000195397d980d0aa08290-unadjust_1080_1080.png"
+            width="1080"
+            height="1080"
+            alt="Catalogusbeeld van een Hermès Clic H armband met oranje detail"
+            loading="lazy"
+            decoding="async">
+          <figcaption>
+            <h3>Hermès · maat en sluiting</h3>
+            <p>
+              Controleer de binnenomtrek en sluiting van een
+              armband. Vraag ontbrekende maatgegevens na.
+            </p>
+            <a href="https://www.hipobuyfind.com">Details vergelijken ↗</a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="photo-note">
+        Dit zijn externe catalogusbeelden ter illustratie, geen geverifieerde
+        voorraad of echtheidsverklaring. Afbeeldingen en merknamen wijzen
+        niet op een officiële samenwerking.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="werkwijze">
+      <div class="guide">
+        <div class="guide-intro">
+          <p class="eyebrow">Een rustige werkwijze</p>
+          <h2 id="werkwijze">Maak van losse finds een bruikbare keuze.</h2>
+          <p>
+            Deze BBDBuy koopgids begint met drie controles die je voor
+            iedere productcategorie kunt herhalen.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Begin bij gebruik en categorie</h3>
+            <p>
+              Zoek je sneakers voor dagelijks gebruik, een hoodie om in te
+              sporten of een jas voor laagjes? Een concrete behoefte helpt
+              bij het vergelijken van BBDBuy finds. Bekijk daarna de
+              kleurvariant en de productomschrijving naast elkaar.
+            </p>
+          </li>
+
+          <li>
+            <h3>Vergelijk de uitvoering, niet alleen de foto</h3>
+            <p>
+              Controleer de maattabel van de verkoper, de stofsamenstelling
+              van een T-shirt en de afmetingen van een accessoire. Houd
+              ontbrekende productgegevens apart: een vergelijkbare
+              afbeelding maakt twee aanbiedingen nog niet gelijk.
+            </p>
+          </li>
+
+          <li>
+            <h3>Bewaar wat je hebt gecontroleerd</h3>
+            <p>
+              Noteer de bronlink, de geselecteerde maat en de datum van je
+              controle. Een persoonlijke productshortlist blijft bruikbaar
+              als je later de actuele vermelding en de aankoopvoorwaarden
+              opnieuw kunt terugvinden.
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="table-box">
+        <table>
+          <caption>Wat leg je vast in je vergelijking?</caption>
+          <thead>
+            <tr>
+              <th scope="col">Onderdeel</th>
+              <th scope="col">Wat noteer je?</th>
+              <th scope="col">Waarom helpt dat?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Identiteit</th>
+              <td>Bron, verkoper, artikelnummer en uitvoering</td>
+              <td>Je vergelijkt dezelfde productvariant.</td>
+            </tr>
+            <tr>
+              <th scope="row">Pasvorm</th>
+              <td>Meetpunten, eenheid en meetwijze</td>
+              <td>Je voorkomt dat twee maatlabels hetzelfde lijken.</td>
+            </tr>
+            <tr>
+              <th scope="row">Beeld en materiaal</th>
+              <td>Zichtbare details en afzonderlijk de opgegeven samenstelling</td>
+              <td>Je houdt waarnemingen en verkopersclaims uit elkaar.</td>
+            </tr>
+            <tr>
+              <th scope="row">Kosten en voorwaarden</th>
+              <td>Actueel bedrag, bijkomende posten en retourvoorwaarden</td>
+              <td>Je ziet welke informatie nog ontbreekt.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="artikelen">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Dossier / productonderzoek</p>
+          <h2 id="artikelen">Vier korte artikelen.<br>Meer grip op je shortlist.</h2>
+        </div>
+        <p>
+          Praktische antwoorden voor wie liever gericht vergelijkt
+          dan eindeloos bladert.
+        </p>
+      </div>
+
+      <div class="journal">
+        <article id="maten" aria-labelledby="maatkop">
+          <p class="eyebrow">01 / De BBDBuy maattabel</p>
+          <h3 id="maatkop">Maten lezen zonder op het label te gokken</h3>
+
+          <p>
+            De <strong>juiste sneakermaat kiezen</strong> begint met het
+            gebruikte maatsysteem. Een EU-label is geen vervanging voor
+            de meetinstructie van het artikel. Controleer bij een
+            <strong>maattabel voor Nike sneakers</strong> of de genoemde
+            lengte een voetmaat of een binnenzoolmaat is; die getallen
+            zijn niet uitwisselbaar.
+          </p>
+
+          <p>
+            Wil je de <strong>maat van een oversized hoodie vergelijken</strong>?
+            Meet een eigen hoodie die prettig zit. Leg borstbreedte,
+            ruglengte en schouderbreedte naast de tabel. Wil je de
+            <strong>pasvorm van een T-shirt beoordelen</strong>, dan helpt
+            dezelfde aanpak, mits beide kledingstukken op dezelfde manier
+            zijn gemeten.
+          </p>
+
+          <p>
+            Wanneer je <strong>broeken en shorts vergelijkt</strong>,
+            noteer je taille, heupen en binnenbeenlengte. Controleer ook
+            of de taille ontspannen of uitgerekt is gemeten. Een afwijkende
+            meetwijze kan een schijnbaar maatverschil verklaren.
+          </p>
+        </article>
+
+        <article id="fotos" aria-labelledby="fotokop">
+          <p class="eyebrow">02 / BBDBuy QC-foto’s</p>
+          <h3 id="fotokop">Wat vertelt een productfoto werkelijk?</h3>
+
+          <p>
+            Wil je <strong>QC-foto’s van sneakers beoordelen</strong>?
+            Meerdere hoeken zijn nuttiger dan één aantrekkelijke opname.
+            Bekijk zoolranden, stiknaden en de vorm van beide schoenen.
+            Wanneer je <strong>productfoto en gekozen variant vergelijkt</strong>,
+            vraag dan steeds of het beeld werkelijk bij jouw kleur en
+            uitvoering hoort.
+          </p>
+
+          <p>
+            Wanneer je <strong>kledingdetails op foto controleert</strong>,
+            kijk je naar naden, zakken, boord en sluiting. Wil je de
+            <strong>pasvorm van een Gucci pet controleren</strong>, dan
+            blijven hoofdomtrek en verstelbereik nodig; een foto van het
+            patroon geeft daar geen antwoord op.
+          </p>
+
+          <p>
+            Ook als je het <strong>materiaal van Dior sieraden wilt
+            controleren</strong>, volstaat een glanzende foto niet.
+            Vraag naar de opgegeven samenstelling en afmetingen.
+            QC-beelden laten zichtbare kenmerken zien, maar zijn geen
+            onafhankelijke materiaaltest of authenticiteitsbewijs.
+          </p>
+        </article>
+
+        <article id="links" aria-labelledby="linkkop">
+          <p class="eyebrow">03 / Een BBDBuy spreadsheet gebruiken</p>
+          <h3 id="linkkop">Een goede shortlist bewaart ook de bron</h3>
+
+          <p>
+            Wie <strong>productlinks in een spreadsheet bewaren</strong>
+            wil, heeft meer aan een bronlink met variantnotitie dan aan
+            een losse schermafbeelding. Wanneer je
+            <strong>vergelijkbare productvermeldingen controleert</strong>,
+            leg dan ook de verkoper en het artikelnummer vast. Dezelfde
+            afbeelding kan op verschillende pagina’s staan.
+          </p>
+
+          <p>
+            Voor <strong>verouderde productlinks herkennen</strong> open
+            je de vermelding opnieuw: verwijst de pagina nog naar hetzelfde
+            artikel, dezelfde uitvoering en dezelfde verkoper? Is een regel
+            onduidelijk, markeer die dan voor controle voordat je verdergaat.
+          </p>
+
+          <p>
+            Wil je <strong>een shortlist voor kleding maken</strong>,
+            bepaal dan vooraf je belangrijkste eisen. Bewaar bijvoorbeeld
+            pasvorm, kleur en materiaal als afzonderlijke velden.
+            Wil je de <strong>afmetingen van een Louis Vuitton tas
+            vergelijken</strong>, noteer dan hoogte, breedte, diepte
+            en draaglengte.
+          </p>
+        </article>
+
+        <article id="kosten" aria-labelledby="kostenkop">
+          <p class="eyebrow">04 / Begroten vóór beslissen</p>
+          <h3 id="kostenkop">Van artikelbedrag naar een bruikbare begroting</h3>
+
+          <p>
+            Wanneer je <strong>totale aankoopkosten vergelijkt</strong>,
+            is het zichtbare artikelbedrag slechts één veld. Zet mogelijke
+            verkopersbezorging, servicekosten en een actuele verzendraming
+            apart. Bevestig welke posten op jouw bestelling van toepassing
+            zijn; vul onbekende bedragen niet zelf in.
+          </p>
+
+          <p>
+            Wil je <strong>een winkelmand met meerdere producten
+            vergelijken</strong>, houd dan aantallen, varianten en
+            bestemming gelijk. Wil je de <strong>verzendkosten voor
+            een pakket beoordelen</strong>, vraag dan naar de gebruikte
+            gewicht- en afmetingsgegevens. Een raming is geen vast eindbedrag.
+          </p>
+
+          <p>
+            Wil je de <strong>aankoopvoorwaarden vooraf controleren</strong>,
+            lees dan de voorwaarden van de gekozen verkoper of dienst.
+            Onderzoek of je bronartikel wordt ondersteund en wie een retour
+            afhandelt. Deze gids doet geen uitspraak over de actuele
+            bestelstatus of tarieven van BBDBuy.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section faq-layout" id="vragen" aria-labelledby="faqkop">
+      <div>
+        <p class="eyebrow">Direct antwoord</p>
+        <h2 id="faqkop">Veelgestelde vragen</h2>
+      </div>
+
+      <div class="faq-list">
+        <details open>
+          <summary>Wat is een BBDBuy spreadsheet?</summary>
+          <p>Een BBDBuy spreadsheet is een verzameling productverwijzingen die wordt gebruikt om artikelen te vinden en te vergelijken. Controleer per vermelding de bron, variant, maten en actuele voorwaarden; de naam van de lijst is geen kwaliteitsbewijs.</p>
+        </details>
+
+        <details>
+          <summary>Moet ik een spreadsheet downloaden?</summary>
+          <p>Nee. Deze gids en de categorieën op HipobuyFind zijn in de browser te bekijken. Een eigen Excel- of Google Sheets-bestand is alleen handig als je zelf links en vergelijkingsnotities wilt bewaren.</p>
+        </details>
+
+        <details>
+          <summary>Waar komen de knoppen op deze pagina uit?</summary>
+          <p>Categorieknoppen openen de bijbehorende categorie op HipobuyFind. Alle overige navigatielinks openen de homepage van HipobuyFind. Deze pagina bevat geen BBDBuy-betaalproces.</p>
+        </details>
+
+        <details>
+          <summary>Bewijzen QC-foto’s dat een artikel authentiek is?</summary>
+          <p>Nee. QC-foto’s kunnen zichtbare afwijkingen en meetpunten helpen beoordelen, maar bewijzen op zichzelf geen authenticiteit, materiaalsamenstelling of duurzaamheid. Vraag aanvullende documentatie wanneer dat voor je keuze van belang is.</p>
+        </details>
+
+        <details>
+          <summary>Hoe vergelijk ik de maat van twee producten?</summary>
+          <p>Gebruik de maattabel van iedere afzonderlijke vermelding en vergelijk dezelfde meetpunten. Meet bij kleding een passend eigen kledingstuk. Controleer bij schoenen het gebruikte maatsysteem en of een lengte de voet of de binnenzool betreft.</p>
+        </details>
+
+        <details>
+          <summary>Is deze gids officieel verbonden met BBDBuy of de merken?</summary>
+          <p>Nee. Dit is een onafhankelijke informatiepagina. Merknamen en afbeeldingen dienen voor herkenning en productonderzoek en betekenen geen samenwerking, goedkeuring of garantie van echtheid.</p>
+        </details>
+      </div>
+    </section>
+
+    <aside class="closing">
+      <div>
+        <h2>Neem je vragen mee naar de collectie.</h2>
+        <p>
+          Kies een categorie, vergelijk de details en bewaar alleen
+          de artikelen die bij je wensen passen.
+        </p>
+      </div>
+      <a class="button" href="https://www.hipobuyfind.com">
+        Naar HipobuyFind <span aria-hidden="true">↗</span>
+      </a>
+    </aside>
+  </main>
+
+  <footer class="wrap">
+    <div class="footline">
+      <strong>VINDWERK. / Nederlandstalige koopgids</strong>
+      <a href="https://www.hipobuyfind.com">HipobuyFind bezoeken ↗</a>
+    </div>
+    <p>
+      Onafhankelijke informatie voor productonderzoek. Deze pagina verkoopt
+      geen producten en verwerkt geen betalingen. BBDBuy, Nike, Louis Vuitton,
+      Gucci, Hermès en Dior zijn namen van hun respectieve rechthebbenden.
+      De vermelding ervan impliceert geen officiële band. Controleer actuele
+      productgegevens en voorwaarden bij de aanbieder.
+    </p>
+  </footer>
+</body>
+</html>
